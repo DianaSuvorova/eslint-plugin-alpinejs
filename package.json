@@ -2,23 +2,40 @@
   "name": "eslint-plugin-alpinejs",
   "version": "1.0.0",
   "description": "coming soon",
-  "main": "index.js",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "exports": {
+    "import": "./dist/index.js",
+    "require": "./dist/index.cjs"
+  },
+  "files": [
+    "dist"
+  ],
+  "types": "./dist/index.d.ts",
   "scripts": {
-    "test": "node --import tsx --test tests/**/*.test.ts",
+    "prepublishOnly": "npm run build",
+    "test": "vitest run",
     "prepare": "husky",
-    "lint": "eslint . --ext .ts"
+    "lint": "eslint . --ext .ts",
+    "build": "tsup"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
     "@commitlint/cli": "^19.8.0",
     "@commitlint/config-conventional": "^19.8.0",
-    "@types/node": "^22.13.17",
+    "@html-eslint/parser": "^0.37.0",
+    "@html-eslint/types": "^0.37.0",
+    "@types/espree": "^10.1.0",
     "@typescript-eslint/eslint-plugin": "^8.29.0",
     "@typescript-eslint/parser": "^8.29.0",
+    "@typescript-eslint/rule-tester": "^8.29.0",
+    "acorn-walk": "^8.3.4",
     "eslint": "^9.23.0",
+    "eslint-rule-tester": "^2.0.0",
+    "espree": "^10.3.0",
     "husky": "^9.1.7",
-    "tsx": "^4.19.3",
-    "typescript": "^5.8.2"
+    "tsup": "^8.4.0",
+    "vitest": "^3.1.1"
   }
 }
