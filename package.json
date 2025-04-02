@@ -2,7 +2,7 @@
   "name": "eslint-plugin-alpinejs",
   "version": "0.0.0",
   "description": "coming soon",
-  "main": "./dist/index.cjs",
+  "main": "./dist/index.js",
   "module": "./dist/index.js",
   "exports": {
     "import": "./dist/index.js",
