@@ -40,4 +40,3 @@ export default [
 ## Supported Rules
 
 * [alpinejs/no-raw-dom-access](docs/rules/no-raw-dom-access.md)
-
