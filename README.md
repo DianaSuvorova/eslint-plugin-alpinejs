@@ -40,3 +40,4 @@ export default [
 ## Supported Rules
 
 * [alpinejs/no-raw-dom-access](docs/rules/no-raw-dom-access.md)
+* [alpinejs/no-unused-xrefs](docs/rules/no-unused-xrefs.md)
