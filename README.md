@@ -41,3 +41,4 @@ export default [
 
 * [alpinejs/no-raw-dom-access](docs/rules/no-raw-dom-access.md)
 * [alpinejs/no-unused-xrefs](docs/rules/no-unused-xrefs.md)
+* [alpinejs/prefer-template-x-if](docs/prefer-template-x-if.md)
