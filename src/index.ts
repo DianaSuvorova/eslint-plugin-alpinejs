@@ -7,3 +7,14 @@ export const rules = {
   'no-unused-xrefs': noUnusedXrefs,
   'prefer-template-x-if': preferTemplateXif,
 };
+
+export const configs = {
+  recommended: {
+    plugins: ['alpinejs'],
+    rules: {
+      'alpinejs/no-raw-dom-access': 'error',
+      'alpinejs/no-unused-xrefs': 'warn',
+      'alpinejs/prefer-template-x-if': 'warn',
+    },
+  },
+};
