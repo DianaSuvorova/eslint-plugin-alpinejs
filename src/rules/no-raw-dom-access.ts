@@ -7,10 +7,11 @@ const rule: TSESLint.RuleModule<'noRawDom', []> = {
   meta: {
     type: 'suggestion',
     docs: {
-      description: 'Discourage raw DOM access when x-ref could be used',
+      description: 'Enforces no raw DOM access within alpinejs attributes',
     },
+    fixable: 'code',
     messages: {
-      noRawDom: 'Avoid using raw DOM access. Use x-ref instead.',
+      noRawDom: 'No raw dom access. Please use alpinejs refs',
     },
     schema: [],
   },
