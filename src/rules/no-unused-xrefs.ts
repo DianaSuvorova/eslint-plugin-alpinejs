@@ -86,8 +86,6 @@ const rule: TSESLint.RuleModule<'unusedRef', []> = {
                 },
               });
             } catch (e) {
-              console.log(e);
-              console.log('did we get here');
               // ignore bad expressions
             }
           }
