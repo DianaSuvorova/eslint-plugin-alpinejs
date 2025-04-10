@@ -18,3 +18,8 @@ export const configs = {
     },
   },
 };
+
+export default {
+  rules, 
+  configs,
+}

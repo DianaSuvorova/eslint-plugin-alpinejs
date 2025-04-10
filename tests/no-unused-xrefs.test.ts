@@ -29,6 +29,27 @@ ruleTester.run('no-unused-x-ref', rule, {
       `,
     },
     {
+      name: 'ref property is accessed',
+      code: `
+        <div x-ref="contextmenu"></div>
+        <div x-data="{ 
+          contextMenuOpen: false,
+          contextMenuToggle: function(event) {
+              this.contextMenuOpen = true;
+              this.$refs.contextmenu.classList.add('opacity-0');
+          }
+        }"></div>
+      `,
+    },`
+      <div x-data="{
+        showMenu() {
+          this.$refs.menu.classList.remove('hidden');
+        }
+      }">
+        <div x-ref="menu"></div>
+      </div>`,
+      `<div x-data x-ref="modal" x-init="$refs.modal.classList.add('active')"></div>`,
+    {
       name: 'ref used in x-init',
       code: `<div x-ref="panel" x-init="$refs.panel.classList.add('active')"></div>`,
     },

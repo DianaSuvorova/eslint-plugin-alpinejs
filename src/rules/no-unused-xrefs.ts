@@ -43,33 +43,51 @@ const rule: TSESLint.RuleModule<'unusedRef', []> = {
           const usedRefs = new Set<string>();
     
           for (const expression of expressions) {
+            const validJs = `const data = ${expression}`
             try {
-              const jsAst = espree.parse(expression, {
+              const jsAst = espree.parse(validJs, {
                 ecmaVersion: 2022,
                 sourceType: 'script',
               });
-    
               walkSimple(jsAst as any, {
                 MemberExpression(node: any) {
                   if (
-                    node.object?.type === 'Identifier' &&
-                    node.object.name === '$refs' &&
-                    node.property?.type === 'Identifier'
+                    node.object?.type === 'MemberExpression'
                   ) {
-                    usedRefs.add(node.property.name);
-                  }
-    
+                    const obj = node.object?.object
+                    const prop = node.object?.property
+                    if (
+                      // this.$refs.menu
+                      obj?.object?.type === "ThisExpression" &&
+                      obj?.property?.type === "Identifier" && 
+                      obj?.property?.name === "$refs" &&
+                      prop?.type === "Identifier"
+                    ) {
+                      usedRefs.add(prop.name);
+                    }
+
                   if (
-                    node.object?.type === 'MemberExpression' &&
-                    node.object.object?.type === 'Identifier' &&
-                    node.object.object.name === '$refs' &&
-                    node.object.property?.type === 'Identifier'
+                    // $refs.menu.
+                    obj?.type === "Identifier" &&
+                    obj?.name === "$refs" &&
+                    prop?.type === "Identifier"
                   ) {
-                    usedRefs.add(node.object.property.name);
+                    usedRefs.add(prop.name);
                   }
+                } if (
+                  // setup($refs.box)
+                  node?.object?.type === 'Identifier' &&
+                  node?.object?.name === '$refs' && 
+                  node?.property?.type === 'Identifier' 
+                ) {
+                  usedRefs.add(node.property.name);
+                }
+  
                 },
               });
-            } catch {
+            } catch (e) {
+              console.log(e);
+              console.log('did we get here');
               // ignore bad expressions
             }
           }
